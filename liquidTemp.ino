@@ -14,14 +14,16 @@ OneWire           oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 
 void setup() {
-  // put your setup code here, to run once:
+  // Setup 7segment dipslay-brigtness
   display.setBrightness(0x0F);
   sensors.begin();
 }
 
 void loop() {
-  sensors.requestTemperatures(); // Send the command to get temperatures
+  // Send the command to get temperatures
+  sensors.requestTemperatures(); 
+  // Measure
   float temp = sensors.getTempCByIndex(0);
-  // put your main code here, to run repeatedly:
+  // Display
   display.showNumberDec((int) (temp * 100.0), true);
 }
